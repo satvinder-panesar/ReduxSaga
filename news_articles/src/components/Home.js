@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Button} from 'react-bootstrap'; 
 import { connect } from 'react-redux';
-import News from './News';
+import Headline from './Headline';
+
+var headlines;
 
 class Home extends Component {
 
@@ -9,9 +11,10 @@ handleClick(){
 	this.props.getNews();
 }
 
-componentWillReceiveProps = newProps => {
-    console.log("new props ",newProps.news);
-   }
+componentWillReceiveProps = (newProps) => {
+    console.log("new props ",newProps.news_articles)
+    headlines = newProps.news_articles.map((article)=><Headline key = {article.title} headline={article.title} />)
+}
 
 render() {
 	return (
@@ -21,7 +24,7 @@ render() {
   				<h3	>Built using Redux-Saga</h3>
   				<Button onClick={this.handleClick.bind(this)}>Click here to get some news</Button>
   				<br /><br />
-  				{this.props.dataAvailable && <News news= {this.props.news} />}
+  				{this.props.dataAvailable && headlines}
   		</center>
 	  </div>
 	    );
@@ -30,7 +33,7 @@ render() {
 
 function mapStateToProps(state) {
   return {
-    news: state.news_articles.news,
+    news_articles: state.news_articles.news,
     dataAvailable: state.news_articles.dataAvailable
   }
 }
