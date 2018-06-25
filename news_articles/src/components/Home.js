@@ -21,7 +21,7 @@ render() {
 	  <div>
   		<center>
   				<h2>Welcome to a Simple News App</h2>
-  				<h3	>Built using Redux-Saga</h3>
+  				<h3	>Built using Redux, Sagas and Axios</h3>
   				<Button onClick={this.handleClick.bind(this)}>Click here to get some news</Button>
   				<br /><br />
   				{this.props.dataAvailable && headlines}
